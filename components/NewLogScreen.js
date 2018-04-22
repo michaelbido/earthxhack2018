@@ -36,6 +36,20 @@ const styles = StyleSheet.create({
 });
 
 class NewLogScreen extends Component {
+
+    static navigationOptions = {
+        title: 'New Recyling Log',
+        headerStyle: {
+          backgroundColor: 'green',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          fontSize: 24,
+        },
+      };
+
+
     constructor(props) {
         super(props);
         this.state = {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import firebase from '../firebase';
 
 
@@ -7,24 +7,63 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       flexDirection: 'column',
-      backgroundColor: 'lightgreen',
+      backgroundColor: 'white',
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'space-between',
+    },
+    headerSpace: {
+        flex: 1,
+    },
+    headerText: {
+        paddingTop: 20,
+        fontSize: 28,
+        fontWeight: "200",
+    },
+    normalText: {
+        flex: 3,
+    },
+    buttonContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     buttonText: {
       color: 'white',
       fontSize: 24,
       marginTop: '5%',
       marginBottom: '5%',
+      
     },
     button1: {
-      width: '100%',
+      width: '25%',
+      height: '100%',
+      borderWidth: 0.5,
+      borderColor: "white", 
+      borderRadius: 2,
       alignItems: 'center',
       backgroundColor: 'green',
     },
+    imageFormat: {
+        padding: 0,
+        margin: 0,
+        width: "80%",
+        height: "80%",
+    }
   });
 
 class HomeScreen extends Component {
+
+    static navigationOptions = {
+        title: 'Home',
+        headerStyle: {
+          backgroundColor: 'green',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          fontSize: 24,
+        },
+      };
 
     constructor(props) {
         super(props);
@@ -69,7 +108,7 @@ class HomeScreen extends Component {
                 .then((snapshot) => {
                     this.setState({ ['firstName']: snapshot.val().firstName });
                     this.setState({ ['lastName']: snapshot.val().lastName });
-                    this.setState({ ['water']: snapshot.val().water });
+                    this.setState({ ['water']: parseInt(snapshot.val().water) / 16.0 });
                     this.setState({ ['points']: snapshot.val().points });
                     this.calculateLevel();
                 })
@@ -79,14 +118,13 @@ class HomeScreen extends Component {
 
     render() {
         return (
-            <View>
-                <Text>Home Screen</Text>
-                <View>
-                    <Text>
+            <View style={styles.container}>
+                <View style={styles.headerSpace}>
+                    <Text style={styles.headerText}>
                         Welcome back, {this.state.firstName}
                     </Text>
                 </View>
-                <View>
+                <View style={styles.normalText}>
                     <View>
                         <Text>
                             POINTS: {this.state.points}
@@ -104,24 +142,37 @@ class HomeScreen extends Component {
                     </View>
                     <View>
                         <Text>
-                            Plastic water bottles saved from ocean: {this.state.water}
+                            Number of 16 fl oz. plastic water bottles saved from the ocean: {this.state.water}
                         </Text>
                     </View>
-                    <View>
-                        <TouchableOpacity style={styles.button1} onPress={() => this.props.navigation.navigate('NewLog', {onGoBack: () => this.componentWillMount()})}>
-                            <Text style={styles.buttonText}> New Recycle Log </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.button1} onPress={() => this.props.navigation.navigate('Comp')}>
-                            <Text style={styles.buttonText}> Groups </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.button1} onPress={() => this.props.navigation.navigate('Water')}>
-                            <Text style={styles.buttonText}> H20 </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.button1} onPress={() => this.props.navigation.navigate('Leader')}>
-                            <Text style={styles.buttonText}> Leaderboards </Text>
-                        </TouchableOpacity>
-                    </View>
                 </View>
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity style={styles.button1} onPress={() => this.props.navigation.navigate('NewLog', {onGoBack: () => this.componentWillMount()})}>
+                        <Image
+                            
+                            source={require('../icons/triangular-arrows-sign-for-recycle.png')}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button1} onPress={() => this.props.navigation.navigate('Comp', {onGoBack: () => this.componentWillMount()})}>
+                        <Image
+                            
+                            source={require('../icons/multiple-users-silhouette.png')}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button1} onPress={() => this.props.navigation.navigate('Water', {onGoBack: () => this.componentWillMount()})}>
+                        <Image
+                            
+                            source={require('../icons/water.png')}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button1} onPress={() => this.props.navigation.navigate('Leader', {onGoBack: () => this.componentWillMount()})}>
+                        <Image
+                            
+                            source={require('../icons/trophy.png')}
+                        />
+                    </TouchableOpacity>
+                </View>
+                
             </View>
         )
     }

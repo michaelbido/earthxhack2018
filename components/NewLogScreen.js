@@ -20,7 +20,9 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: 'white',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
+        width: "100%",
+        height: "100%"
     },
     buttonText: {
         color: 'white',
@@ -38,7 +40,7 @@ const styles = StyleSheet.create({
 class NewLogScreen extends Component {
 
     static navigationOptions = {
-        title: 'New Recyling Log',
+        title: 'New Log',
         headerStyle: {
           backgroundColor: 'green',
         },
@@ -95,7 +97,7 @@ class NewLogScreen extends Component {
     render() {
         return (
             <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss} accessible={false}>
-            <KeyboardAvoidingView behavior="position">
+            <KeyboardAvoidingView style={{backgroundColor: "white",}}behavior="position">
                 <Text>New Recycling Entry</Text>
                 <Text> Total Number of Items (.e.g 1 bottle = 1, 1 box = 1, etc.):</Text>
                 <TextInput

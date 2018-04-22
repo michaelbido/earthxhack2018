@@ -5,22 +5,30 @@ import { StyleSheet, Text, View, TextInput, Switch, KeyboardAvoidingView,
 import firebase from '../firebase';
 
 const styles = StyleSheet.create({
-    textInput: {
-      height: '6%', 
-      width: '75%',
-      borderColor: 'gray', 
-      borderWidth: 1,
-      backgroundColor: 'white',
-      borderRadius: 4,
-      padding: 6,
-    },
     container: {
-        flex: 3,
-        flexDirection: 'column',
+        flex: 1,
+        flexDirection: 'row',
         backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
-    },
+      },
+      brand: {
+        color: 'white',
+        fontSize: 32,
+      },
+      loginText: {
+        color: 'white',
+        fontSize: 24,
+      },
+      textInput: {
+        height: '6%', 
+        width: '75%',
+        borderColor: 'gray', 
+        borderWidth: 1,
+        backgroundColor: 'white',
+        borderRadius: 4,
+        padding: 6,
+      },
     buttonText: {
         color: 'white',
         fontSize: 24,
@@ -28,6 +36,7 @@ const styles = StyleSheet.create({
         marginBottom: '5%',
     },
     button1: {
+        flex:1,
         width: '100%',
         alignItems: 'center',
         backgroundColor: 'green',
@@ -37,7 +46,7 @@ const styles = StyleSheet.create({
 class NewComp extends Component {
 
     static navigationOptions = {
-        title: 'Make a new Comp',
+        title: 'New Comp.',
         headerStyle: {
           backgroundColor: 'green',
         },

@@ -120,7 +120,7 @@ class HomeScreen extends Component {
             <View style={styles.container}>
                 <View style={styles.headerSpace}>
                     <Text style={styles.headerText}>
-                        Welcome back, {this.state.firstName}
+                        Welcome home, {this.state.firstName}
                     </Text>
                 </View>
                 <View style={styles.normalText}>

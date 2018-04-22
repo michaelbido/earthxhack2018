@@ -69,22 +69,37 @@ class LoginScreen extends Component {
   })
 
   addUser = (email, password) => {
-    // firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-    //   // Handle Errors here.
-    //   // this.setState({ error: true });
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      // this.setState({ error: true });
 
-    //   var errorCode = error.code;
-    //   var errorMessage = error.message;
-    //   // [START_EXCLUDE]
-    //   if (errorCode == 'auth/weak-password') {
-    //     console.log("Weak Password");
-    //   } else {
-    //     console.log(errorMessage);
-    //   }
-    //   console.log(error);
-    //   // [END_EXCLUDE]
-    // });
-    // // [END createwithemail]
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // [START_EXCLUDE]
+      if (errorCode == 'auth/weak-password') {
+        console.log("Weak Password");
+      } else {
+        console.log(errorMessage);
+      }
+      console.log(error);
+      // [END_EXCLUDE]
+    }).then(() => {
+      firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+        var authUser = firebase.auth().currentUser.uid
+        const ref = firebase.database().ref('users/' + authUser);
+        if (firebase.auth().currentUser !== null) {
+          ref.set({
+            firstName: "user",
+            lastName: "example",
+            points: "0",
+            uid: authUser,
+            water: "0"
+          }).then(() => {
+            this.props.update(firebase.auth().currentUser.uid);
+          });
+        }
+      })
+    });
 
   }
 
@@ -120,7 +135,7 @@ class LoginScreen extends Component {
         <TouchableOpacity style={styles.wideButton1} onPress={() => this.loginUser(this.state.email, this.state.password)}>
           <Text style={styles.buttonText}> Login </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.wideButton2} onPress={() => this.props.update()}>
+        <TouchableOpacity style={styles.wideButton2} onPress={() => this.addUser(this.state.email, this.state.password)}>
           <Text style={styles.buttonText}> Sign Up </Text>
         </TouchableOpacity>
       </View>

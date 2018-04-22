@@ -8,6 +8,8 @@ import LoginScreen from './components/LoginScreen';
 import HomeScreen from './components/HomeScreen';
 import NewLogScreen from './components/NewLogScreen';
 import CompScreen from './components/CompScreen';
+import NewComp from './components/NewComp';
+import JoinComp from './components/JoinComp';
 import WaterScreen from './components/WaterScreen';
 import LeaderScreen from './components/LeaderScreen';
 
@@ -15,7 +17,6 @@ import LeaderScreen from './components/LeaderScreen';
 
 export default class App extends Component {
 
-  
   
   constructor(props) {
     super(props);
@@ -57,6 +58,12 @@ const RootStack = StackNavigator(
     },
     Comp: {
       screen: CompScreen,
+    },
+    GoNewComp: {
+      screen: NewComp,
+    },
+    GoJoinComp: {
+      screen: JoinComp,
     },
     Water: {
       screen: WaterScreen,

@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
       justifyContent: 'space-between',
     },
     headerSpace: {
-        flex: 1,
+        flex: 2,
     },
     headerText: {
         paddingTop: 20,
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         fontWeight: "200",
     },
     normalText: {
-        flex: 3,
+        flex: 6,
     },
     buttonContainer: {
         flex: 1,
@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
       height: '100%',
       borderWidth: 0.5,
       borderColor: "white", 
-      borderRadius: 2,
       alignItems: 'center',
       backgroundColor: 'green',
     },
